@@ -22,6 +22,7 @@
     </select>
     <input type="text" name="description" value="{{$note->description}}">
     <input type="submit" name="add" value="Add">
+    <a href="{{ route('notes.index') }}">Back</a>
 </form>
 </body>
 </html>

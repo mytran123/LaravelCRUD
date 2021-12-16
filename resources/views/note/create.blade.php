@@ -10,4 +10,5 @@
     </select>
     <input type="text" name="description" placeholder="Enter description">
     <button type="submit">Add new note</button>
+    <a href="{{ route('notes.index') }}">Back</a>
 </form>
