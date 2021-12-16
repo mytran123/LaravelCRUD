@@ -23,6 +23,7 @@ Route::prefix('/note')->group(function () {
     Route::get('/create',[NoteController::class,"showFormCreate"])->name("notes.showFormCreate");
     Route::post('/create',[NoteController::class,"create"]);
     Route::get('/{id}/detail',[NoteController::class,"showDetail"])->name("notes.showDetail");
-    Route::get('/{id}/update',[NoteController::class,"update"])->name("notes.update");
+    Route::get('/{id}/update',[NoteController::class,"showUpdate"])->name("notes.showUpdate");
+    Route::post('/{id}/update',[NoteController::class,"update"])->name("notes.update");
     Route::get('/{id}/delete',[NoteController::class,"destroy"])->name("notes.delete");
 });

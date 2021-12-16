@@ -34,11 +34,19 @@ class NoteController extends Controller
         return view('note.detail', compact("note"));
     }
 
-    public function update($request, $id)
+    public function showUpdate($id)
+    {
+        $note = DB::table('notes')
+            ->where('id','=', $id)
+            ->get()->first();
+        return view('note.update', compact("note"));
+    }
+
+    public function update(Request $request, $id)
     {
         $data = $request->only('name','category','description');
-        $note = DB::table('notes')->where('id', '=', $id)->update($data);
-        return view('note.update', compact("note"));
+        DB::table('notes')->where('id', '=', $id)->update($data);
+        return redirect()->route('notes.index');
     }
 
     public function destroy($id)
