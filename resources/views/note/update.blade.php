@@ -12,7 +12,14 @@
     @csrf
     <h1>Update Note</h1>
     <input type="text" name="name" value="{{$note->name}}">
-    <input type="text" name="category" value="{{$note->category}}">
+{{--    <input type="text" name="category" value="{{$note->category}}">--}}
+    <select name="category" id="" value="{{$note->category}}">
+        <option value="">Choose category note</option>
+        <option value="Work">Work</option>
+        <option value="Lear">Lear</option>
+        <option value="Family">Family</option>
+        <option value="Friend">Friend</option>
+    </select>
     <input type="text" name="description" value="{{$note->description}}">
     <input type="submit" name="add" value="Add">
 </form>
