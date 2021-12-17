@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::prefix('/note')->group(function () {
     Route::get('/',[NoteController::class,"index"])->name("notes.index");
     Route::get('/create',[NoteController::class,"showFormCreate"])->name("notes.showFormCreate");
-    Route::post('/create',[NoteController::class,"create"]);
+    Route::post('/create',[NoteController::class,"create"])->middleware("checkName");
     Route::get('/{id}/detail',[NoteController::class,"showDetail"])->name("notes.showDetail");
     Route::get('/{id}/update',[NoteController::class,"showUpdate"])->name("notes.showUpdate");
     Route::post('/{id}/update',[NoteController::class,"update"])->name("notes.update");

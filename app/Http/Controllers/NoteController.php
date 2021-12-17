@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\NoteRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class NoteController extends Controller
 {
+    protected $noteRepository;
+
+    public function __construct(NoteRepository $noteRepository)
+    {
+        $this->noteRepository = $noteRepository;
+    }
+
     public function index()
     {
-        $notes = DB::table('notes')->get();
+//        $notes = DB::table('notes')->get();
+        $notes = $this->noteRepository->getAll();
         return view('note.list', compact('notes'));
     }
 
@@ -20,17 +29,13 @@ class NoteController extends Controller
 
     public function create(Request $request)
     {
-        DB::table('notes')->insert([
-            'name' => $request->name,
-            'category' => $request->category,
-            'description' => $request->description
-        ]);
+        $this->noteRepository->create($request);
         return redirect()->route('notes.index');
     }
 
     public function showDetail($id)
     {
-        $note = DB::table('notes')->where('id','=', $id)->get()->first();
+        $note = $this->noteRepository->getById($id);
         return view('note.detail', compact("note"));
     }
 
